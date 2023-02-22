@@ -1,1 +1,19 @@
-@forward "uswds/header";
+@forward "usa-header";
+
+.usa-logo__text {
+    display: flex;
+    
+    a {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    a.usa-logo__text--img {
+      flex: none;
+      picture {
+        max-width: 120px;
+        display: block;
+        margin-right: 20px;
+      }
+    }
+  }

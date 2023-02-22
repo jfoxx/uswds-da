@@ -97,6 +97,7 @@ function buildBanner(main) {
   banner.append(accordion);
 
   main.parentElement.prepend(banner);
+  decorateBlocks(banner);
 }
 
 /**
