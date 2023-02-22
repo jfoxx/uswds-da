@@ -122,6 +122,8 @@ export default async function decorate(block) {
    const logoContents = navContainer.querySelector('.usa-navbar').innerHTML;
    logo.innerHTML = logoContents;
    logo.querySelector('p').className ='usa-logo__text';
+   const picture = logo.querySelector('picture');
+   picture.parentNode.className = 'usa-logo__text--img';
    const menuButton = document.createElement('button');
    menuButton.className = 'usa-menu-btn';
    menuButton.setAttribute('type', 'button');
