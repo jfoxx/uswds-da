@@ -524,6 +524,16 @@ export async function waitForLCP(lcpBlocks) {
   });
 }
 
+
+/**
+ * loads a block named 'banner' above the header
+ */
+export function loadBanner(header) {
+  const bannerBlock = buildBlock('banner', '');
+  header.insertBefore(bannerBlock);
+  return loadBlock(bannerBlock);
+}
+
 /**
  * loads a block named 'header' into header
  */

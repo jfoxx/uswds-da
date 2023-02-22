@@ -3,6 +3,7 @@ import { getMetadata, decorateIcons } from '../../scripts/lib-franklin.js';
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 900px)');
 
+
 function closeOnEscape(e) {
   if (e.code === 'Escape') {
     const nav = document.getElementById('nav');
@@ -91,6 +92,8 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
  */
 export default async function decorate(block) {
   block.textContent = '';
+  document.querySelector('header').classList.add('usa-header', 'usa-header--basic');
+
 
   // fetch nav content
   const navPath = getMetadata('nav') || '/nav';
@@ -100,47 +103,64 @@ export default async function decorate(block) {
     const html = await resp.text();
 
     // decorate nav DOM
-    const nav = document.createElement('nav');
-    nav.id = 'nav';
-    nav.innerHTML = html;
+    const navContainer = document.createElement('div');
+    navContainer.className = 'usa-nav-container';
+    navContainer.innerHTML = html;
 
-    const classes = ['brand', 'sections', 'tools'];
+    const classes = ['usa-navbar', 'usa-nav'];
     classes.forEach((c, i) => {
-      const section = nav.children[i];
-      if (section) section.classList.add(`nav-${c}`);
+      const section = navContainer.children[i];
+      if (section) section.classList.add(c);
     });
 
-    const navSections = nav.querySelector('.nav-sections');
-    if (navSections) {
-      navSections.querySelectorAll(':scope > ul > li').forEach((navSection) => {
-        if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
-        navSection.addEventListener('click', () => {
-          if (isDesktop.matches) {
-            const expanded = navSection.getAttribute('aria-expanded') === 'true';
-            toggleAllNavSections(navSections);
-            navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-          }
-        });
-      });
+
+
+   //make the navbar
+   const logo = document.createElement('div');
+   logo.className = 'usa-logo';
+   logo.id = 'basic-logo';
+   const logoContents = navContainer.querySelector('.usa-navbar').innerHTML;
+   logo.innerHTML = logoContents;
+   logo.querySelector('p').className ='usa-logo__text';
+   const menuButton = document.createElement('button');
+   menuButton.className = 'usa-menu-btn';
+   menuButton.setAttribute('type', 'button');
+   menuButton.innerText = 'Menu';
+   logo.append(menuButton);
+   navContainer.querySelector('.usa-navbar').innerHTML = '';
+   navContainer.querySelector('.usa-navbar').append(logo);
+  
+   //make primary nav
+
+  const nav = document.createElement('nav');
+  const clone = navContainer.querySelector('div.usa-nav');
+  nav.className = 'usa-nav';
+  nav.setAttribute('aria-label','Primary navigation');
+  nav.innerHTML = clone.innerHTML;
+  clone.remove();
+  navContainer.append(nav);
+  const navUl = nav.querySelector(':scope > ul');
+  navUl.classList.add('usa-nav__primary','usa-accordion');
+  const primaryItems = navUl.querySelectorAll(':scope > li');
+  primaryItems.forEach((i) => {
+    i.className = 'usa-nav__primary-item';
+    i.querySelector('a').className = 'usa-nav-link';
+    if(i.querySelector('ul')) {
+      const btn = document.createElement('button');
+      btn.setAttribute('type', 'buton');
+      btn.classList.add('usa-accordion__button', 'usa-nav__link');
+      btn.setAttribute('aria-expanded', 'false');
+      const content = i.innerHTML;
+      btn.innerHTML = content;
+      btn.querySelector('ul').remove();
+      i.innerHTML = '';
+      i.prepend(btn);
     }
+  });
 
-    // hamburger for mobile
-    const hamburger = document.createElement('div');
-    hamburger.classList.add('nav-hamburger');
-    hamburger.innerHTML = `<button type="button" aria-controls="nav" aria-label="Open navigation">
-        <span class="nav-hamburger-icon"></span>
-      </button>`;
-    hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
-    nav.prepend(hamburger);
-    nav.setAttribute('aria-expanded', 'false');
-    // prevent mobile nav behavior on window resize
-    toggleMenu(nav, navSections, isDesktop.matches);
-    isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
+    block.append(navContainer);
 
-    decorateIcons(nav);
-    const navWrapper = document.createElement('div');
-    navWrapper.className = 'nav-wrapper';
-    navWrapper.append(nav);
-    block.append(navWrapper);
+    
+   
   }
 }

@@ -14,12 +14,6 @@ main .hero {
     min-height: 300px;
 }
 
-main .hero h1 {
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    color: white;
-}
 
 
 main .hero picture {
