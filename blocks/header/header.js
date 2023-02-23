@@ -92,7 +92,7 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
  */
 export default async function decorate(block) {
   block.textContent = '';
-  document.querySelector('header').classList.add('usa-header', 'usa-header--basic');
+  document.querySelector('header').classList.add('usa-header', 'usa-header--extended');
 
 
   // fetch nav content
@@ -103,13 +103,11 @@ export default async function decorate(block) {
     const html = await resp.text();
 
     // decorate nav DOM
-    const navContainer = document.createElement('div');
-    navContainer.className = 'usa-nav-container';
-    navContainer.innerHTML = html;
+    block.innerHTML = html;
 
     const classes = ['usa-navbar', 'usa-nav'];
     classes.forEach((c, i) => {
-      const section = navContainer.children[i];
+      const section = block.children[i];
       if (section) section.classList.add(c);
     });
 
@@ -118,8 +116,8 @@ export default async function decorate(block) {
    //make the navbar
    const logo = document.createElement('div');
    logo.className = 'usa-logo';
-   logo.id = 'basic-logo';
-   const logoContents = navContainer.querySelector('.usa-navbar').innerHTML;
+   logo.id = 'extended-logo';
+   const logoContents = block.children[0].innerHTML;
    logo.innerHTML = logoContents;
    logo.querySelector('p').className ='usa-logo__text';
    const picture = logo.querySelector('picture');
@@ -129,19 +127,23 @@ export default async function decorate(block) {
    menuButton.setAttribute('type', 'button');
    menuButton.innerText = 'Menu';
    logo.append(menuButton);
-   navContainer.querySelector('.usa-navbar').innerHTML = '';
-   navContainer.querySelector('.usa-navbar').append(logo);
+   block.children[0].innerHTML = '';
+   block.children[0].append(logo, menuButton);
   
    //make primary nav
 
   const nav = document.createElement('nav');
-  const clone = navContainer.querySelector('div.usa-nav');
+  const clone = block.children[1];
   nav.className = 'usa-nav';
   nav.setAttribute('aria-label','Primary navigation');
-  nav.innerHTML = clone.innerHTML;
+  const inner = document.createElement('div');
+  inner.className = 'usa-nav__inner';
+  inner.innerHTML = clone.innerHTML;
   clone.remove();
-  navContainer.append(nav);
-  const navUl = nav.querySelector(':scope > ul');
+  const close = document.createElement('button');
+  close.className = 'usa-nav__close';
+  inner.prepend(close);
+  const navUl = inner.querySelector(':scope > ul');
   navUl.classList.add('usa-nav__primary','usa-accordion');
   const primaryItems = navUl.querySelectorAll(':scope > li');
   primaryItems.forEach((i) => {
@@ -160,7 +162,53 @@ export default async function decorate(block) {
     }
   });
 
-    block.append(navContainer);
+  // Create the secondary links section
+
+  const secondary = document.createElement('div');
+  secondary.className = 'usa-nav__secondary';
+  const secondaryClone = inner.children[2].querySelector('ul').innerHTML;
+  const secondaryUl = document.createElement('ul');
+  secondaryUl.classList.add('usa-nav__secondary-links');
+  secondaryUl.innerHTML = secondaryClone;
+  secondaryUl.querySelectorAll('li').forEach((i) => { i.className = 'usa-nav__secondary-item'});
+  inner.children[2].remove();
+  secondary.append(secondaryUl);
+
+  //Search form
+  const search = document.createElement('form');
+  search.classList.add('usa-search', 'usa-search--small');
+  search.setAttribute('action', '/search/');
+  search.setAttribute('method', 'get');
+  const searchDiv = document.createElement('div');
+  searchDiv.setAttribute('role', 'search');
+  const label = document.createElement('label');
+  label.className = 'usa-sr-only';
+  label.setAttribute('for', 'extended-search-field-small');
+  label.innerText = 'Search';
+  const field = document.createElement('input');
+  field.classList.add('usa-input', 'usagov-search-autocomplete', 'ui-autocomplete-input');
+  field.id = 'extended-search-field-small';
+  field.setAttribute('type', 'search');
+  field.setAttribute('name', 'query');
+  field.setAttribute('autocomplete', 'off');
+  const button = document.createElement('button');
+  button.className = 'usa-button';
+  button.setAttribute('type', 'submit');
+  const buttonImg = document.createElement('img');
+  buttonImg.className = 'usa-search__submit-icon';
+  buttonImg.setAttribute('alt', 'Search');
+  buttonImg.src = '/icons/usa-icons-bg/search--white.svg';
+  button.append(buttonImg);
+  searchDiv.append(label, field, button);
+  search.append(searchDiv);
+  secondary.append(search);
+
+  inner.append(secondary);
+
+
+  nav.append(inner);
+  block.append(nav);
+
 
     
    

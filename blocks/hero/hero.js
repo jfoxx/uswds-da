@@ -18,7 +18,7 @@ export default function decorate(block) {
   callout.className = 'usa-hero__callout';
   const text = block.children[1].children[0].innerHTML;
   callout.innerHTML = text;
-  callout.querySelector('h1').className='usa-hero__heading';
+ callout.querySelector('h1').className='usa-hero__heading';
   callout.querySelector('h1 > em').className = 'usa-hero__heading--alt';
   callout.querySelector('a').className ='usa-button';
   grid.append(callout);
