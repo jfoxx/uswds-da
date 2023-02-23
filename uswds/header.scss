@@ -1,3 +1,5 @@
+@use "uswds-core" as *;
+
 @forward "usa-header";
 
 .usa-logo__text {
@@ -9,6 +11,10 @@
         justify-content: center;
     }
     a.usa-logo__text--img {
+
+      @include at-media-max($theme-header-min-width) {
+        display: none;
+      }
       flex: none;
       picture {
         max-width: 120px;
