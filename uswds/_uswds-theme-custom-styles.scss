@@ -25,9 +25,9 @@ i.e.
 
 img { height: auto;}
 
-header { min-height: 164px;
+header { min-height: 220px;
    @include at-media-max($theme-header-min-width) {
-      min-height: 0;
+      min-height: 48px;
    }
 }
 
