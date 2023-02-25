@@ -109,6 +109,25 @@ function buildHeroBlock(main) {
     main.prepend(section);
   }
 }
+
+function decorateHeadlines(main) {
+  const headings = main.querySelectorAll('h2');
+  headings.forEach(h => {
+    h.classList.add('font-heading-xl', 'margin-top-0', 'tablet:margin-bottom-0');
+  })
+}
+
+function proseText(main) {
+  const prose = main.querySelectorAll('p>u');
+  prose.forEach(p => {
+    const text = p.innerHTML;
+    const parent = p.parentElement;
+    const parentDiv = parent.parentElement;
+    p.remove();
+    parent.append(text);
+    parentDiv.classList.add('usa-prose');
+  })
+}
 /**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
@@ -136,6 +155,8 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
+  decorateHeadlines(main);
+  proseText(main);
 }
 
 /**
