@@ -121,6 +121,8 @@ export default async function decorate(block) {
       iconImg.className = 'usa-social-link__icon';
       iconImg.setAttribute('alt', '');
       iconImg.setAttribute('src', iconPath+icon);
+      iconImg.setAttribute('width', '40');
+      iconImg.setAttribute('height', '40');
       a.innerHTML=''
       a.append(iconImg);
   })
