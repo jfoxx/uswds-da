@@ -44,7 +44,7 @@ export function decorateButtons(element) {
   });
 }
 
-const LCP_BLOCKS = []; // add your LCP blocks to the list
+const LCP_BLOCKS = ['hero']; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = 'project-1'; // add your RUM generation information here
 
 
@@ -100,6 +100,15 @@ function buildBanner(main) {
   decorateBlocks(banner);
 }
 
+
+function buildHeroBlock(main) {
+  const hero = main.querySelector('.hero');
+  if (hero) {
+    const section = document.createElement('div');
+    section.append(buildBlock('hero', ''));
+    main.prepend(section);
+  }
+}
 /**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
@@ -107,8 +116,8 @@ function buildBanner(main) {
 
 function buildAutoBlocks(main) {
   try {
-   // buildHeroBlock(main);
     buildBanner(main);
+  //  buildHeroBlock(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);

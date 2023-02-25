@@ -32,9 +32,9 @@ export default async function decorate(block) {
   const gridRowFour = document.createElement('div');
   gridRowFour.classList.add('grid-row', 'grid-gap-4');
 
-  const columns = primary.querySelector('.columns>div');
+  const columns = primary.querySelector('.primary-links>div');
   gridRowFour.innerHTML = columns.innerHTML;
-  primary.querySelector('.columns').remove();
+  primary.querySelector('.primary-links').remove();
   gridRowFour.querySelectorAll('div').forEach(i => {
     i.classList.add('mobile-lg:grid-col-6', 'desktop:grid-col-3');
     const section = document.createElement('section');
