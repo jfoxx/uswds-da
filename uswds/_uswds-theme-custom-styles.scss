@@ -29,12 +29,27 @@ header { min-height: 220px;
    @include at-media-max($theme-header-min-width) {
       min-height: 48px;
    }
+
+  
 }
 
 .hero-wrapper {
    min-height: 533px;
 
-   @include at-media-max($theme-header-min-width) {
-      min-height: 470px;
+   @media(max-width: 280px)  {
+      min-height: 762px;
    }
+
+   @media(max-width: 340px)  {
+      min-height: 670px;
+   }
+
+   @media(max-width: 374px)  {
+      min-height: 608px;
+   }
+
+   @media(max-width: 400px)  {
+      min-height: 571px;
+   }
+  
 }
