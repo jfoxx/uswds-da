@@ -35,21 +35,31 @@ header { min-height: 220px;
 
 .hero-wrapper {
    min-height: 533px;
+   max-height: 534px;
+   overflow: hidden;
 
    @media(max-width: 280px)  {
       min-height: 762px;
+      max-height: 763px;
    }
 
    @media(max-width: 340px)  {
       min-height: 670px;
+      max-height: 671px;
    }
 
    @media(max-width: 374px)  {
       min-height: 608px;
+      max-height: 609px;
    }
 
    @media(max-width: 400px)  {
       min-height: 571px;
+      max-height: 572px;
+   }
+
+   &.usa-header {
+      max-height: none;
    }
   
 }
