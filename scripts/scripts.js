@@ -117,6 +117,7 @@ function decorateHeadlines(main) {
   })
 }
 
+
 function proseText(main) {
   const prose = main.querySelectorAll('p>u');
   prose.forEach(p => {
