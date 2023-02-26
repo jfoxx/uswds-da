@@ -257,7 +257,7 @@ export function decorateSections(main) {
       wrappers[wrappers.length - 1].append(e);
     });
     wrappers.forEach((wrapper) => section.append(wrapper));
-    section.classList.add('section');
+    section.classList.add('section', 'usa-section');
     section.setAttribute('data-section-status', 'initialized');
 
     /* process section metadata */
@@ -267,7 +267,7 @@ export function decorateSections(main) {
       Object.keys(meta).forEach((key) => {
         if (key === 'style') {
           const styles = meta.style.split(',').map((style) => toClassName(style.trim()));
-          styles.forEach((style) => section.classList.add(style));
+          styles.forEach((style) => section.classList.add('usa-section--'+style));
         } else {
           section.dataset[toCamelCase(key)] = meta[key];
         }
