@@ -259,6 +259,7 @@ export function decorateSections(main) {
     wrappers.forEach((wrapper) => section.append(wrapper));
     section.classList.add('section', 'usa-section');
     section.setAttribute('data-section-status', 'initialized');
+    section.style.display = 'none';
 
     /* process section metadata */
     const sectionMeta = section.querySelector('div.section-metadata');
@@ -293,6 +294,7 @@ export function updateSectionsStatus(main) {
         break;
       } else {
         section.setAttribute('data-section-status', 'loaded');
+        section.style.display = '';
       }
     }
   }
@@ -511,7 +513,7 @@ export async function waitForLCP(lcpBlocks) {
   const hasLCPBlock = (block && lcpBlocks.includes(block.getAttribute('data-block-name')));
   if (hasLCPBlock) await loadBlock(block);
 
-  document.querySelector('body').classList.add('appear');
+  document.querySelector('body').style.display = '';
   const lcpCandidate = document.querySelector('main img');
   await new Promise((resolve) => {
     if (lcpCandidate && !lcpCandidate.complete) {
@@ -568,6 +570,8 @@ export function setup() {
  */
 function init() {
   setup();
+  document.querySelector('body').style.display = 'none';
+
   sampleRUM('top');
 
   window.addEventListener('load', () => sampleRUM('load'));
