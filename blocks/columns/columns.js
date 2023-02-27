@@ -10,11 +10,9 @@ export default function decorate(block) {
     const layoutItems = layoutClass[0].split('-');
     layoutItems.splice(0,1);
     const layoutNumber = layoutItems.length;
-    console.log (layoutNumber);
     const childDivs = firstDiv.querySelectorAll('div');
     let a=0;
     childDivs.forEach(d => {
-      console.log(layoutItems[0]);
       const layoutClass = 'tablet:grid-col-' + layoutItems[a];
       d.classList.add(layoutClass);
       a = (a + 1);

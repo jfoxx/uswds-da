@@ -8,7 +8,6 @@ export default function decorate(block) {
  const childArr = Array.from(childDivs);
  var html = '<div class="usa-graphic-list__row grid-row grid-gap">';
  childArr.forEach(function (item, index) {
-  console.log(item);
     html+= item.outerHTML;
     if (index % 2 && index < (childArr.length - 1)) {
       html += '</div><div class="usa-graphic-list__row grid-row grid-gap">'
