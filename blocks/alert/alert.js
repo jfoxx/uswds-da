@@ -1,9 +1,9 @@
 export default function decorate(block) {
   const classes = block.classList.value.split(' ');
   if (classes.length > 1) {
-    const alertType = 'usa-alert--' + classes[1];
+    const alertType = `usa-alert--${classes[1]}`;
     block.classList.add(alertType);
-   }
+  }
   block.classList.add('usa-alert');
   const titleP = block.querySelector('strong').parentElement;
   const body = document.createElement('div');
@@ -15,7 +15,7 @@ export default function decorate(block) {
   body.classList.add('usa-alert__body');
   const text = document.createElement('p');
   text.classList.add('usa-alert__text');
-  var textHTML = block.querySelector('p').innerHTML;
+  const textHTML = block.querySelector('p').innerHTML;
   text.innerHTML = textHTML;
   text.querySelector('a').classList.add('usa-link');
   body.append(text);

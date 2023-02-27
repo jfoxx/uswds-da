@@ -268,7 +268,7 @@ export function decorateSections(main) {
       Object.keys(meta).forEach((key) => {
         if (key === 'style') {
           const styles = meta.style.split(',').map((style) => toClassName(style.trim()));
-          styles.forEach((style) => section.classList.add('usa-section--'+style));
+          styles.forEach((style) => section.classList.add(`usa-section--${style}`));
         } else {
           section.dataset[toCamelCase(key)] = meta[key];
         }

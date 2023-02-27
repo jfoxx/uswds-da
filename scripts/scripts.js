@@ -1,6 +1,5 @@
 import {
   sampleRUM,
-  buildBlock,
   loadHeader,
   loadFooter,
   decorateIcons,
@@ -11,7 +10,6 @@ import {
   loadBlocks,
   loadCSS,
 } from './lib-franklin.js';
-
 
 /**
  * decorates paragraphs containing a single link as buttons.
@@ -47,12 +45,10 @@ export function decorateButtons(element) {
 const LCP_BLOCKS = ['hero']; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = 'project-1'; // add your RUM generation information here
 
-
-
 function buildBanner(main) {
   const banner = document.createElement('section');
   banner.className = 'usa-banner';
-  banner.setAttribute('aria-label','Official website of the United States government');
+  banner.setAttribute('aria-label', 'Official website of the United States government');
   const accordion = document.createElement('div');
   accordion.className = 'usa-accordion';
   const header = document.createElement('div');
@@ -74,7 +70,7 @@ function buildBanner(main) {
   col.setAttribute('aria-hidden', 'true');
   const text = document.createElement('p');
   text.className = 'usa-banner__header-text';
-  text.innerText = 'An official website of the United States government'
+  text.innerText = 'An official website of the United States government';
   const action = document.createElement('p');
   action.className = 'usa-banner__header-action';
   action.innerText = 'Here\'s how you know';
@@ -86,7 +82,7 @@ function buildBanner(main) {
   button.setAttribute('aria-expanded', 'false');
   const btnText = document.createElement('span');
   btnText.className = 'usa-banner__button-text';
-  btnText.innerText = 'Here\'s how you know'
+  btnText.innerText = 'Here\'s how you know';
   button.append(btnText);
 
   inner.append(grid);
@@ -100,34 +96,23 @@ function buildBanner(main) {
   decorateBlocks(banner);
 }
 
-
-function buildHeroBlock(main) {
-  const hero = main.querySelector('.hero');
-  if (hero) {
-    const section = document.createElement('div');
-    section.append(buildBlock('hero', ''));
-    main.prepend(section);
-  }
-}
-
 function decorateHeadlines(main) {
   const headings = main.querySelectorAll('h2');
-  headings.forEach(h => {
+  headings.forEach((h) => {
     h.classList.add('font-heading-xl', 'margin-top-0', 'tablet:margin-bottom-0');
-  })
+  });
 }
-
 
 function proseText(main) {
   const prose = main.querySelectorAll('p>u');
-  prose.forEach(p => {
+  prose.forEach((p) => {
     const text = p.innerHTML;
     const parent = p.parentElement;
     const parentDiv = parent.parentElement;
     p.remove();
     parent.append(text);
     parentDiv.classList.add('usa-prose');
-  })
+  });
 }
 /**
  * Builds all synthetic blocks in a container element.
@@ -202,7 +187,6 @@ async function loadLazy(doc) {
   if (hash && element) element.scrollIntoView();
   loadHeader(doc.querySelector('header'));
   loadFooter(doc.querySelector('footer'));
-
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   addFavIcon(`${window.hlx.codeBasePath}/styles/favicon.svg`);
