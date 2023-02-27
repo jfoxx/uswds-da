@@ -22,6 +22,12 @@ i.e.
 
 @use "uswds-core" as *;
 
+@font-face {
+      font-family: 'source-sans-pro-web-normal-400-fallback';
+      size-adjust: 94%;
+      src: local('Arial');
+}
+
 
 img { height: auto;}
 

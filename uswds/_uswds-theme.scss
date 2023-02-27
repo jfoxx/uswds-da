@@ -8,8 +8,10 @@ in the form $setting: value,
 */
 
 //
-//  @use "uswds-core" with (
+  @use "uswds-core" with (
 //    $setting: value,
 //    $setting: value
-//  );
+    $theme-font-path: "/fonts",
+    $theme-font-sans-custom-stack: 'source-sans-pro-web-normal-400-fallback'
+ );
 //
