@@ -1,4 +1,4 @@
-import { readBlockConfig, decorateIcons } from '../../scripts/lib-franklin.js';
+import { readBlockConfig } from '../../scripts/lib-franklin.js';
 
 /**
  * loads and decorates the footer
@@ -19,7 +19,7 @@ export default async function decorate(block) {
   primary.className = 'usa-footer__primary-section';
   secondary.className = 'usa-footer__secondary-section';
 
-  //primary section
+  // primary section
   const gridContainer = document.createElement('div');
   gridContainer.className = 'grid-container';
   const gridRow = document.createElement('div');
@@ -35,23 +35,22 @@ export default async function decorate(block) {
   const columns = primary.querySelector('.primary-links>div');
   gridRowFour.innerHTML = columns.innerHTML;
   primary.querySelector('.primary-links').remove();
-  gridRowFour.querySelectorAll('div').forEach(i => {
+  gridRowFour.querySelectorAll('div').forEach((i) => {
     i.classList.add('mobile-lg:grid-col-6', 'desktop:grid-col-3');
     const section = document.createElement('section');
     section.classList.add('usa-footer__primary-content', 'usa-footer__primary-content--collapsible');
     const title = i.querySelector('strong').innerText;
     const titleTag = document.createElement('h4');
-    titleTag.className ='usa-footer__primary-link';
+    titleTag.className = 'usa-footer__primary-link';
     titleTag.innerText = title;
     i.querySelector('p').remove();
     section.innerHTML = i.innerHTML;
     section.prepend(titleTag);
     i.innerHTML = '';
     i.prepend(section);
-    
   });
-  gridRowFour.querySelectorAll('ul').forEach(i => { i.classList.add('usa-list','usa-list--unstyled')});
-  gridRowFour.querySelectorAll('li').forEach(i => { i.classList.add('usa-footer__secondary-link')});
+  gridRowFour.querySelectorAll('ul').forEach((i) => { i.classList.add('usa-list', 'usa-list--unstyled'); });
+  gridRowFour.querySelectorAll('li').forEach((i) => { i.classList.add('usa-footer__secondary-link'); });
 
   footerNav.append(gridRowFour);
   gridCol.append(footerNav);
@@ -60,7 +59,7 @@ export default async function decorate(block) {
 
   primary.append(gridContainer);
 
-  //secondary section
+  // secondary section
   const secContainer = document.createElement('div');
   secContainer.className = 'grid-container';
   const secRow = document.createElement('div');
@@ -72,12 +71,12 @@ export default async function decorate(block) {
   logoChild1.className = 'mobile-lg:grid-col-auto';
   logoChild2.className = 'mobile-lg:grid-col-auto';
   const logoNodes = secondary.querySelectorAll(':scope > p a');
-  logoChild1.innerHTML =logoNodes[0].innerHTML;
+  logoChild1.innerHTML = logoNodes[0].innerHTML;
   const logoTitle = document.createElement('p');
   logoTitle.className = 'usa-footer__logo-heading';
   logoTitle.innerText = logoNodes[1].innerText;
   logoChild2.append(logoTitle);
-  logoChild1.querySelector('img').className='usa-footer__logo-img';
+  logoChild1.querySelector('img').className = 'usa-footer__logo-img';
   logoDiv.append(logoChild1, logoChild2);
   secRow.append(logoDiv);
 
@@ -85,50 +84,47 @@ export default async function decorate(block) {
   contactDiv.classList.add('usa-footer__contact-links', 'mobile-lg:grid-col-6');
   const socialDiv = document.createElement('div');
   socialDiv.classList.add('usa-footer__social-links', 'grid-row', 'grid-gap-1');
-  
+
   const socialLinks = secondary.querySelectorAll('.social-links li');
-  socialLinks.forEach(s => {
+  socialLinks.forEach((s) => {
     const socialWrapperDiv = document.createElement('div');
     socialWrapperDiv.className = 'grid-col-auto';
     socialWrapperDiv.innerHTML = s.innerHTML;
     socialDiv.append(socialWrapperDiv);
   });
 
-  //social icons
+  // social icons
   const link = socialDiv.querySelectorAll('a');
-  const iconPath = '/icons/usa-icons/'
-  link.forEach( a => {
-      a.className = 'usa-social-link';
-      const type = a.innerText;
-      let icon = '';
-      if (type.includes('Facebook')) {
-        icon = 'facebook.svg';
-      } else if (type.includes('Twitter')) {
-        icon= 'twitter.svg';
-      } else if (type.includes('YouTube')) {
-        icon= 'youtube.svg';
-      } else if (type.includes('Instagram')) {
-        icon= 'instagram.svg';
-      } else if (type.includes('RSS')) {
-        icon= 'rss_feed.svg';
-      } else if (type.includes('LinkedIn')) {
-        icon= 'linkedin.svg';
-      } else {
-        icon = 'github.svg'
-      };
+  const iconPath = '/icons/usa-icons/';
+  link.forEach((a) => {
+    a.className = 'usa-social-link';
+    const type = a.innerText;
+    let icon = '';
+    if (type.includes('Facebook')) {
+      icon = 'facebook.svg';
+    } else if (type.includes('Twitter')) {
+      icon = 'twitter.svg';
+    } else if (type.includes('YouTube')) {
+      icon = 'youtube.svg';
+    } else if (type.includes('Instagram')) {
+      icon = 'instagram.svg';
+    } else if (type.includes('RSS')) {
+      icon = 'rss_feed.svg';
+    } else if (type.includes('LinkedIn')) {
+      icon = 'linkedin.svg';
+    } else {
+      icon = 'github.svg';
+    }
 
-      const iconImg = document.createElement('img');
-      iconImg.className = 'usa-social-link__icon';
-      iconImg.setAttribute('alt', '');
-      iconImg.setAttribute('src', iconPath+icon);
-      iconImg.setAttribute('width', '40');
-      iconImg.setAttribute('height', '40');
-      a.innerHTML=''
-      a.append(iconImg);
-  })
-
-
-
+    const iconImg = document.createElement('img');
+    iconImg.className = 'usa-social-link__icon';
+    iconImg.setAttribute('alt', '');
+    iconImg.setAttribute('src', iconPath + icon);
+    iconImg.setAttribute('width', '40');
+    iconImg.setAttribute('height', '40');
+    a.innerHTML = '';
+    a.append(iconImg);
+  });
 
   const contactHeading = document.createElement('p');
   contactHeading.className = 'usa-footer__contact-heading';
@@ -153,5 +149,4 @@ export default async function decorate(block) {
   secondary.innerHTML = '';
 
   secondary.append(secContainer);
-
 }
