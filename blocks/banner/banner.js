@@ -1,4 +1,7 @@
-function renderInside(type,lang) {
+const lang = navigator.language;
+
+
+function renderInside(type) {
 
 }
 
@@ -6,7 +9,11 @@ function renderInside(type,lang) {
 export default function decorate(block) {
     const banner = document.createElement('section');
     banner.className = 'usa-banner';
-    banner.setAttribute('aria-label', 'Official website of the United States government');
+    if (/^es\b/.test(lang)){
+      banner.setAttribute('aria-label', 'Un sitio oficial del Gobierno de Estados Unidos')
+    } else {
+      banner.setAttribute('aria-label', 'Official website of the United States government');
+    }
     const accordion = document.createElement('div');
     accordion.className = 'usa-accordion';
     const header = document.createElement('header');
@@ -28,10 +35,18 @@ export default function decorate(block) {
     col.setAttribute('aria-hidden', 'true');
     const text = document.createElement('p');
     text.className = 'usa-banner__header-text';
-    text.innerText = 'An official website of the United States government';
+    if (/^es\b/.test(lang)){
+      text.innerText = 'Un sitio oficial del Gobierno de Estados Unidos';
+    } else {
+      text.innerText = 'An official website of the United States government';
+    }
     const action = document.createElement('p');
     action.className = 'usa-banner__header-action';
-    action.innerText = 'Here\'s how you know';
+    if (/^es\b/.test(lang)){
+      action.innerText = 'Así es como usted puede verificarlo';
+    } else {
+      action.innerText = 'Here\'s how you know';
+    }
     col.append(text, action);
   
     const button = document.createElement('button');
@@ -40,7 +55,12 @@ export default function decorate(block) {
     button.setAttribute('aria-expanded', 'false');
     const btnText = document.createElement('span');
     btnText.className = 'usa-banner__button-text';
-    btnText.innerText = 'Here\'s how you know';
+    if (/^es\b/.test(lang)){
+      btnText.innerText = 'Así es como usted puede verificarlo';
+    } else {
+      btnText.innerText = 'Here\'s how you know';
+    }
+    
     button.append(btnText);
   
     inner.append(grid);
