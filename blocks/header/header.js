@@ -6,7 +6,7 @@ import { getMetadata } from '../../scripts/lib-franklin.js';
  */
 export default async function decorate(block) {
   block.textContent = '';
-  document.querySelector('header').classList.add('usa-header', 'usa-header--extended');
+  document.querySelector('body > header').classList.add('usa-header', 'usa-header--extended');
 
   // fetch nav content
   const navPath = getMetadata('nav') || '/nav';

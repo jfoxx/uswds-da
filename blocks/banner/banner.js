@@ -1,10 +1,15 @@
+function renderInside(type,lang) {
+
+}
+
+
 export default function decorate(block) {
     const banner = document.createElement('section');
     banner.className = 'usa-banner';
     banner.setAttribute('aria-label', 'Official website of the United States government');
     const accordion = document.createElement('div');
     accordion.className = 'usa-accordion';
-    const header = document.createElement('div');
+    const header = document.createElement('header');
     header.className = 'usa-banner__header';
     const inner = document.createElement('div');
     inner.className = 'usa-banner__inner';
