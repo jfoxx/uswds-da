@@ -1,4 +1,7 @@
 import {
+  decorateBlock,
+  buildBlock,
+  loadBlock,
   sampleRUM,
   loadHeader,
   loadFooter,
@@ -45,55 +48,14 @@ export function decorateButtons(element) {
 const LCP_BLOCKS = ['hero']; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = 'project-1'; // add your RUM generation information here
 
-function buildBanner(main) {
-  const banner = document.createElement('section');
-  banner.className = 'usa-banner';
-  banner.setAttribute('aria-label', 'Official website of the United States government');
-  const accordion = document.createElement('div');
-  accordion.className = 'usa-accordion';
-  const header = document.createElement('div');
-  header.className = 'usa-banner__header';
-  const inner = document.createElement('div');
-  inner.className = 'usa-banner__inner';
-  const grid = document.createElement('div');
-  grid.className = 'grid-col-auto';
-  const flag = document.createElement('img');
-  flag.className = 'usa-banner__header-flag';
-  flag.setAttribute('aria-hidden', 'true');
-  flag.setAttribute('src', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAAAsCAIAAABaPSmoAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAQKADAAQAAAABAAAALAAAAAA5W/rGAAABlElEQVRoBe2ZTU4DMQyFYzTLXoHOhhsAW24AR4GzFdb8iC2cABaoPUYXDFKlJt+TSJtZpFEkd+W4jhPnOX5Jxs4vV2H/M7O9GMI0JRkStbAOooef98V97L39pVVUh7yfZJOZTjhLJn1KHkBr3Abm3/rjNs5nvHqM8vrzLspZ/fVTtOH+GV9/kr6C5ClUYVFnueweAVuCByR01HLmtNgUNJ4XD9FqQjHn3vufHWK3nZCbTvcIeAAK9OlbQ0ByMUc3BZywBFdsyBXghIs354GDsPoeOLg8J/jTmMfcA6zTnAdrtthgL5E3yAPUix9xlEYDbWTvDJ5Cab3aSN0jMDAvpZajxhfdB2BPbnEeOJKZ3adQ9wGYvAsBLqnTBXqYyBvRC96FpK6j9lNPPyVy9wh4ACUw17Qxnn9qDlTLt6dQrZUt9ds9AvZ1Mx4NVr4boMrPrd+ZKwOPTjyaybxyfbtHwAMQnBs0nAcaLLoM6XtAlqNBw77BA3IHyJzXhRNyRIC+oI3Agj/3DMZx2ddTqEHWyJDdI/AHdI1y3pPhjf8AAAAASUVORK5CYII=');
-  flag.setAttribute('alt', '');
-  flag.setAttribute('width', '16');
-  flag.setAttribute('height', '11');
-  grid.append(flag);
-  const col = document.createElement('div');
-  col.classList.add('grid-col-fill', 'tablet:grid-col-auto');
-  col.setAttribute('aria-hidden', 'true');
-  const text = document.createElement('p');
-  text.className = 'usa-banner__header-text';
-  text.innerText = 'An official website of the United States government';
-  const action = document.createElement('p');
-  action.className = 'usa-banner__header-action';
-  action.innerText = 'Here\'s how you know';
-  col.append(text, action);
 
-  const button = document.createElement('button');
-  button.setAttribute('type', 'button');
-  button.classList.add('usa-banner__button');
-  button.setAttribute('aria-expanded', 'false');
-  const btnText = document.createElement('span');
-  btnText.className = 'usa-banner__button-text';
-  btnText.innerText = 'Here\'s how you know';
-  button.append(btnText);
-
-  inner.append(grid);
-  inner.append(col);
-  inner.append(button);
-  header.append(inner);
-  accordion.append(header);
-  banner.append(accordion);
-
-  main.parentElement.prepend(banner);
-  decorateBlocks(banner);
+function loadBanner(body) {
+  const bannerWrapper = document.createElement('div');
+  const bannerBlock = buildBlock('banner', '');
+  body.prepend(bannerWrapper);
+  bannerWrapper.append(bannerBlock);
+  decorateBlock(bannerBlock);
+  return loadBlock(bannerBlock);
 }
 
 function decorateHeadlines(main) {
@@ -121,7 +83,6 @@ function proseText(main) {
 
 function buildAutoBlocks(main) {
   try {
-    buildBanner(main);
   //  buildHeroBlock(main);
   } catch (error) {
     // eslint-disable-next-line no-console
@@ -151,6 +112,7 @@ export function decorateMain(main) {
 async function loadEager(doc) {
   document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
+  loadBanner(doc.querySelector('body'));
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
@@ -212,3 +174,28 @@ async function loadPage() {
 }
 
 loadPage();
+
+
+(function uswdsInit() {
+  "use strict";
+
+  var loadingClass = "usa-js-loading";
+  var fallback;
+
+  document.documentElement.classList.add(loadingClass);
+  function revertClass() {
+    document.documentElement.classList.remove(loadingClass);
+  }
+
+  fallback = setTimeout(revertClass, 8000);
+
+  function verifyLoaded() {
+    if (window.uswdsPresent) {
+      clearTimeout(fallback);
+      revertClass();
+      window.removeEventListener("load", verifyLoaded, true);
+    }
+  }
+
+  window.addEventListener("load", verifyLoaded, true);
+})();

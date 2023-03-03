@@ -53,6 +53,10 @@ export default async function decorate(block) {
     clone.remove();
     const close = document.createElement('button');
     close.className = 'usa-nav__close';
+    const closeImg = document.createElement('img');
+    closeImg.setAttribute('alt', 'close');
+    closeImg.setAttribute('src', '/icons/usa-icons/close.svg');
+    close.append(closeImg);
     inner.prepend(close);
     const navUl = inner.querySelector(':scope > ul');
     navUl.classList.add('usa-nav__primary', 'usa-accordion');

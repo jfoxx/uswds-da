@@ -1,4 +1,6 @@
-@forward 'usa-hero';
+@forward "uswds-theme";
+
+@forward "usa-hero";
 
 
 
@@ -12,7 +14,6 @@ main .hero-container {
   
 main .hero {
     position: relative;
-    padding: 32px;
     min-height: 300px;
 }
 
