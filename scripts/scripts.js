@@ -78,7 +78,7 @@ function proseText(main) {
 /**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
-
+ */
 
 function buildAutoBlocks(main) {
   try {
@@ -88,7 +88,7 @@ function buildAutoBlocks(main) {
     console.error('Auto Blocking failed', error);
   }
 }
- */
+
 /**
  * Decorates the main element.
  * @param {Element} main The main element
