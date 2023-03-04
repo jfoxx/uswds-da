@@ -80,7 +80,7 @@ function proseText(main) {
  * @param {Element} main The container element
  */
 
-function buildAutoBlocks(main) {
+function buildAutoBlocks() {
   try {
   //  buildHeroBlock(main);
   } catch (error) {
@@ -175,9 +175,8 @@ async function loadPage() {
 loadPage();
 
 (function uswdsInit() {
- 
   const loadingClass = 'usa-js-loading';
-  let fallback;
+  let fallback = '';
 
   document.documentElement.classList.add(loadingClass);
   function revertClass() {
@@ -195,4 +194,4 @@ loadPage();
   }
 
   window.addEventListener('load', verifyLoaded, true);
-})();
+}());
