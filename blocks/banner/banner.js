@@ -52,6 +52,7 @@ console.log(bannerText);
     button.setAttribute('type', 'button');
     button.classList.add('usa-banner__button', 'usa-accordion__button');
     button.setAttribute('aria-expanded', 'false');
+    button.setAttribute('aria-controls', 'gov-banner-default');
     const btnText = document.createElement('span');
     btnText.className = 'usa-banner__button-text';
     btnText.innerText = buttonText;
