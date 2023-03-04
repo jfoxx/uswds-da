@@ -45,9 +45,8 @@ export function decorateButtons(element) {
   });
 }
 
-const LCP_BLOCKS = ['hero']; // add your LCP blocks to the list
+const LCP_BLOCKS = ['banner', 'hero']; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = 'project-1'; // add your RUM generation information here
-
 
 function loadBanner(body) {
   const bannerWrapper = document.createElement('div');
@@ -81,7 +80,7 @@ function proseText(main) {
  * @param {Element} main The container element
  */
 
-function buildAutoBlocks(main) {
+function buildAutoBlocks() {
   try {
   //  buildHeroBlock(main);
   } catch (error) {
@@ -175,12 +174,9 @@ async function loadPage() {
 
 loadPage();
 
-
 (function uswdsInit() {
-  "use strict";
-
-  var loadingClass = "usa-js-loading";
-  var fallback;
+  const loadingClass = 'usa-js-loading';
+  let fallback = '';
 
   document.documentElement.classList.add(loadingClass);
   function revertClass() {
@@ -193,9 +189,9 @@ loadPage();
     if (window.uswdsPresent) {
       clearTimeout(fallback);
       revertClass();
-      window.removeEventListener("load", verifyLoaded, true);
+      window.removeEventListener('load', verifyLoaded, true);
     }
   }
 
-  window.addEventListener("load", verifyLoaded, true);
-})();
+  window.addEventListener('load', verifyLoaded, true);
+}());
