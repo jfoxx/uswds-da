@@ -16,7 +16,6 @@ if (/^es\b/.test(navigator.language)){
   officialText = '<strong>Official websites use .'+type+'</strong><br/>A <strong>.'+type+'</strong> website belongs to an official government organization in the United States.';
   secureText = '<strong>Secure .'+type+' websites use HTTPS</strong><br/>A <strong>lock</strong> (  <span class="icon-lock"><svg xmlns="http://www.w3.org/2000/svg" width="52" height="64" viewBox="0 0 52 64" class="usa-banner__lock-image" role="img" aria-labelledby="banner-lock-description" focusable="false"><title id="banner-lock-title">Lock</title><desc id="banner-lock-description">Locked padlock icon</desc><path fill="#000000" fill-rule="evenodd" d="M26 0c10.493 0 19 8.507 19 19v9h3a4 4 0 0 1 4 4v28a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V32a4 4 0 0 1 4-4h3v-9C7 8.507 15.507 0 26 0zm0 8c-5.979 0-10.843 4.77-10.996 10.712L15 19v9h22v-9c0-6.075-4.925-11-11-11z"/></svg></span>) or <strong>https://</strong> means you\’ve safely connected to the .'+type+' website. Share sensitive information only on official, secure websites.'; 
 }
-console.log(bannerText);
 
     const banner = document.createElement('section');
     banner.className = 'usa-banner';
@@ -66,8 +65,7 @@ console.log(bannerText);
     accordion.append(header);
     banner.append(accordion);
     
-    block.textContent = '';
-    block.append(banner);
+ 
 
     // dropdown content
 
@@ -110,7 +108,8 @@ console.log(bannerText);
     col2.append(col2Body);
     row.append(col2);
     dropdown.append(row);
-
     block.querySelector('.usa-accordion').append(dropdown);
-
+    block.textContent = '';
+    block.append(banner);
+    block.append(dropdown);
   }
