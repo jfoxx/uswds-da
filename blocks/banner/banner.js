@@ -63,7 +63,6 @@ if (/^es\b/.test(navigator.language)){
     inner.append(button);
     header.append(inner);
     accordion.append(header);
-    banner.append(accordion);
     
  
 
@@ -108,8 +107,11 @@ if (/^es\b/.test(navigator.language)){
     col2.append(col2Body);
     row.append(col2);
     dropdown.append(row);
-    block.querySelector('.usa-accordion').append(dropdown);
+
+    accordion.append(dropdown);
+    banner.append(accordion);
+
+
     block.textContent = '';
     block.append(banner);
-    block.append(dropdown);
   }
