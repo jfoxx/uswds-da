@@ -12,9 +12,9 @@ import {
   loadBlocks,
   loadCSS,
   readBlockConfig,
-  toClassName
+  toClassName,
+  toCamelCase,
 } from './lib-franklin.js';
-
 
 /**
  * Decorates all sections in a container element.
