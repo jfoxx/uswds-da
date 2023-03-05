@@ -99,6 +99,14 @@ function loadBanner(body) {
   return loadBlock(bannerBlock);
 }
 
+function skipNav(body) {
+  const link = document.createElement('a');
+  link.classList.add('usa-skipnav');
+  link.href = '#main-content';
+  link.innerText = 'Skip to main content';
+  body.prepend(link);
+}
+
 function decorateHeadlines(main) {
   const headings = main.querySelectorAll('h2');
   headings.forEach((h) => {
@@ -145,6 +153,7 @@ export function decorateMain(main) {
   decorateBlocks(main);
   decorateHeadlines(main);
   proseText(main);
+  main.id = 'main-content';
 }
 
 /**
@@ -190,6 +199,7 @@ async function loadLazy(doc) {
   if (hash && element) element.scrollIntoView();
   loadHeader(doc.querySelector('body > header'));
   loadFooter(doc.querySelector('body > footer'));
+  skipNav(doc.querySelector('body'));
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   addFavIcon(`${window.hlx.codeBasePath}/styles/favicon.svg`);
