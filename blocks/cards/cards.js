@@ -36,6 +36,16 @@ export default function decorate(block) {
     parent.remove();
   });
 
+  const container = document.createElement('div');
+  container.classList.add('grid-container');
+  const row = document.createElement('div');
+  row.classList.add('grid-row', 'grid-gap');
+  const col = document.createElement('div');
+  col.classList.add('tablet:grid-col');
+
+  col.append(ul);
+  row.append(col);
+  container.append(row);
   block.textContent = '';
-  block.append(ul);
+  block.append(container);
 }
