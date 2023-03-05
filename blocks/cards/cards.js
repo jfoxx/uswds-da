@@ -46,7 +46,6 @@ export default function decorate(block) {
   col.append(ul);
   row.append(col);
   container.append(row);
-  
   block.textContent = '';
   block.append(container);
 }
