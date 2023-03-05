@@ -3,7 +3,7 @@ export default function decorate(block) {
   const items = block.querySelectorAll(':scope > div');
   let itemNumber = 1;
   const collection = document.createElement('div');
-  items.forEach(i => {
+  items.forEach((i) => {
     const pieces = i.querySelectorAll('div');
     const heading = document.createElement('h4');
     heading.classList.add('usa-accordion__heading');
@@ -19,7 +19,7 @@ export default function decorate(block) {
     div.id = `a${itemNumber}`;
     div.innerHTML = pieces[1].innerHTML;
     collection.append(heading, div);
-    itemNumber = itemNumber+1;
+    itemNumber += 1;
   });
   block.textContent = '';
   block.classList.add('usa-accordion');
