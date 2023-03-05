@@ -241,7 +241,7 @@ export function readBlockConfig(block) {
 
 /**
  * Decorates all sections in a container element.
- * @param {Element} $main The container element
+ * @param {Element} main The container element
  */
 export function decorateSections(main) {
   main.querySelectorAll(':scope > div').forEach((section) => {
@@ -257,8 +257,8 @@ export function decorateSections(main) {
       wrappers[wrappers.length - 1].append(e);
     });
     wrappers.forEach((wrapper) => section.append(wrapper));
-    section.classList.add('section', 'usa-section');
-    section.setAttribute('data-section-status', 'initialized');
+    section.classList.add('section');
+    section.dataset.sectionStatus = 'initialized';
     section.style.display = 'none';
 
     /* process section metadata */
@@ -268,7 +268,7 @@ export function decorateSections(main) {
       Object.keys(meta).forEach((key) => {
         if (key === 'style') {
           const styles = meta.style.split(',').map((style) => toClassName(style.trim()));
-          styles.forEach((style) => section.classList.add(`usa-section--${style}`));
+          styles.forEach((style) => section.classList.add(style));
         } else {
           section.dataset[toCamelCase(key)] = meta[key];
         }
