@@ -1,5 +1,7 @@
-# Your Project's Title...
-Your project's description...
+# US Web Design System on Franklin
+The [US Web Design System (USWDS)](https://designsystem.digital.gov/) is a design system developed and maintained by the US Digital Service as a common design system to be used across US federal government websites.
+
+This project is an implementation of the USWDS for Franklin. 
 
 ## Environments
 - Preview: https://main--{repo}--{owner}.hlx.page/
