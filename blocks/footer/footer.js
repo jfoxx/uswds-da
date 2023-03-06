@@ -98,6 +98,7 @@ export default async function decorate(block) {
   const iconPath = '/icons/usa-icons/';
   link.forEach((a) => {
     a.className = 'usa-social-link';
+    a.setAttribute('aria-label', a.innerText);
     const type = a.innerText;
     let icon = '';
     if (type.includes('Facebook')) {
