@@ -31,8 +31,11 @@ export default async function decorate(block) {
     const logoContents = block.children[0].innerHTML;
     logo.innerHTML = logoContents;
     logo.querySelector('p').className = 'usa-logo__text';
+    const siteName = logo.innerText.replace(/(\r\n|\n|\r)/gm, '').trim();
     const picture = logo.querySelector('picture');
     picture.parentNode.className = 'usa-logo__text--img';
+    const img = picture.querySelector('img');
+    img.setAttribute('aria-label', `Logo for ${siteName}`);
     const menuButton = document.createElement('button');
     menuButton.className = 'usa-menu-btn';
     menuButton.setAttribute('type', 'button');
