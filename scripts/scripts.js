@@ -17,6 +17,28 @@ import {
 } from './lib-franklin.js';
 
 /**
+ * Grab the current URL and search for a given keyword
+ * @param {string} keyword The keyword to search for in the current window's URL
+ * @returns {true} if keyword exists
+ */
+export function checkPath(keyword) {
+  const path = window.location.pathname;
+  let a = false;
+  if (path.indexOf(keyword) > -1) {
+    a = true;
+  } else {
+    a = false;
+  }
+  return a;
+}
+
+let contentOnly = false;
+
+if (checkPath('block-library')) {
+  contentOnly = true;
+}
+
+/**
  * Convience method for creating tags in one line of code
  * @param {string} tag Tag to create
  * @param {object} attributes Key/value object of attributes
@@ -225,9 +247,13 @@ async function loadLazy(doc) {
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
-  loadHeader(doc.querySelector('body > header'));
-  loadFooter(doc.querySelector('body > footer'));
-  skipNav(doc.querySelector('body'));
+  if (contentOnly) {
+    // do nothing
+  } else {
+    loadHeader(doc.querySelector('body > header'));
+    loadFooter(doc.querySelector('body > footer'));
+    skipNav(doc.querySelector('body'));
+  }
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   addFavIcon(`${window.hlx.codeBasePath}/styles/favicon.svg`);
