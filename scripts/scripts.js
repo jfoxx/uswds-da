@@ -77,7 +77,9 @@ export function decorateSections(main) {
     [...section.children].forEach((e) => {
       if (e.tagName === 'DIV' || !defaultContent) {
         const wrapper = document.createElement('div');
-        wrapper.classList.add('grid-container');
+        if (contentOnly) {
+          // do nothing
+        } else { wrapper.classList.add('grid-container'); }
         wrappers.push(wrapper);
         defaultContent = e.tagName !== 'DIV';
         if (defaultContent) wrapper.classList.add('default-content-wrapper');
@@ -212,7 +214,9 @@ export function decorateMain(main) {
 async function loadEager(doc) {
   document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
-  loadBanner(doc.querySelector('body'));
+  if (contentOnly) {
+    // do nothing
+  } else { loadBanner(doc.querySelector('body')); }
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
