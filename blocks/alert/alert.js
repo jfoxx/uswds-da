@@ -17,7 +17,12 @@ export default function decorate(block) {
   text.classList.add('usa-alert__text');
   const textHTML = block.querySelector('p').innerHTML;
   text.innerHTML = textHTML;
-  text.querySelector('a').classList.add('usa-link');
+  const links = text.querySelectorAll('a');
+  if (links) {
+    links.forEach((l) => {
+      l.classList.add('usa-link');
+    });
+  }
   body.append(text);
   block.textContent = '';
   block.append(body);
