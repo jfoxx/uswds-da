@@ -38,5 +38,9 @@ body>header { min-height: 220px;
 
   
 }
-
-.grid-container.hero-wrapper { padding: 0;}
+// components that should go edge to edge
+.grid-container {  
+   &.hero-wrapper, &.alert-wrapper {
+      padding: 0;
+   }
+   }
