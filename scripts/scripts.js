@@ -305,3 +305,9 @@ loadPage();
 
   window.addEventListener('load', verifyLoaded, true);
 }());
+
+const uswds = document.createElement('script');
+const body = document.querySelector('body');
+uswds.async = 'true';
+uswds.src = '/scripts/uswds.js';
+body.append(uswds);
