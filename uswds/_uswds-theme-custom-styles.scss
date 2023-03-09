@@ -43,4 +43,8 @@ body>header { min-height: 220px;
    &.hero-wrapper, &.alert-wrapper {
       padding: 0;
    }
+
+   & .grid-row.grid-nowrap {
+      flex-wrap: nowrap;
+   }
    }
