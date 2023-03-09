@@ -5,7 +5,7 @@ export default function decorate(block) {
   block.classList.add('grid-container', 'usa-section', 'usa-prose');
   const firstDiv = block.querySelector('div');
   firstDiv.classList.add('grid-row', 'grid-gap');
-  if ( classes.length < 3 ) {
+  if (classes.length < 3) {
     const childDivs = firstDiv.querySelectorAll('div');
     childDivs.forEach((d) => d.classList.add('tablet:grid-col-auto'));
     firstDiv.classList.add('grid-nowrap');
