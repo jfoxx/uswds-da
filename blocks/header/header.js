@@ -1,8 +1,7 @@
-import { 
+import {
   getMetadata,
   toClassName,
-  toCamelCase,
- } from '../../scripts/lib-franklin.js';
+} from '../../scripts/lib-franklin.js';
 
 /**
  * decorates the header, mainly the nav
@@ -81,14 +80,15 @@ export default async function decorate(block) {
         innerSpan.innerHTML = content;
         innerSpan.querySelector('ul').remove();
         btn.append(innerSpan);
-        const thisItemName = 'extended-nav-section-' + toClassName(btn.innerText);
+        const currText = toClassName(btn.innerText);
+        const thisItemName = `extended-nav-section-${currText}`;
         btn.setAttribute('aria-controls', thisItemName);
         const submenu = i.querySelector('ul');
         submenu.classList.add('usa-nav__submenu');
         submenu.id = thisItemName;
         submenu.setAttribute('hidden', '');
         const items = submenu.querySelectorAll('li');
-        items.forEach((i) => { i.classList.add('usa-nav__submenu-item')});
+        items.forEach((l) => { l.classList.add('usa-nav__submenu-item'); });
         i.innerHTML = '';
         i.prepend(btn);
         i.append(submenu);
