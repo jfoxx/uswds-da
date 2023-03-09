@@ -1,4 +1,7 @@
-import { getMetadata } from '../../scripts/lib-franklin.js';
+import {
+  getMetadata,
+  toClassName,
+} from '../../scripts/lib-franklin.js';
 
 /**
  * decorates the header, mainly the nav
@@ -72,11 +75,23 @@ export default async function decorate(block) {
         btn.setAttribute('type', 'buton');
         btn.classList.add('usa-accordion__button', 'usa-nav__link');
         btn.setAttribute('aria-expanded', 'false');
+        const innerSpan = document.createElement('span');
         const content = i.innerHTML;
-        btn.innerHTML = content;
-        btn.querySelector('ul').remove();
+        innerSpan.innerHTML = content;
+        innerSpan.querySelector('ul').remove();
+        btn.append(innerSpan);
+        const currText = toClassName(btn.innerText);
+        const thisItemName = `extended-nav-section-${currText}`;
+        btn.setAttribute('aria-controls', thisItemName);
+        const submenu = i.querySelector('ul');
+        submenu.classList.add('usa-nav__submenu');
+        submenu.id = thisItemName;
+        submenu.setAttribute('hidden', '');
+        const items = submenu.querySelectorAll('li');
+        items.forEach((l) => { l.classList.add('usa-nav__submenu-item'); });
         i.innerHTML = '';
         i.prepend(btn);
+        i.append(submenu);
       }
     });
 

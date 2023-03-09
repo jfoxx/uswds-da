@@ -260,7 +260,7 @@ async function loadLazy(doc) {
   }
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
-  addFavIcon(`${window.hlx.codeBasePath}/styles/favicon.svg`);
+  addFavIcon(`${window.hlx.codeBasePath}/icons/favicons/favicon.ico`);
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
   sampleRUM.observe(main.querySelectorAll('picture > img'));
@@ -305,3 +305,9 @@ loadPage();
 
   window.addEventListener('load', verifyLoaded, true);
 }());
+
+const uswds = document.createElement('script');
+const body = document.querySelector('body');
+uswds.async = 'true';
+uswds.src = '/scripts/uswds.min.js';
+body.append(uswds);
