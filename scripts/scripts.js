@@ -309,5 +309,5 @@ loadPage();
 const uswds = document.createElement('script');
 const body = document.querySelector('body');
 uswds.async = 'true';
-uswds.src = '/scripts/uswds.js';
+uswds.src = '/scripts/uswds.min.js';
 body.append(uswds);
