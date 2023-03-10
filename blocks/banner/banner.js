@@ -1,5 +1,15 @@
+import {
+  getMetadata,
+} from '../../scripts/lib-franklin.js';
+
 export default function decorate(block) {
-  const type = 'gov';
+  const setType = getMetadata('domain');
+  let type = 'gov';
+  if (setType === 'mil') {
+    type = 'mil';
+  } else {
+    type = 'gov';
+  }
   let bannerText;
   let buttonText;
   let officialText;
