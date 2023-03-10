@@ -5,8 +5,10 @@ import {
 export default function decorate(block) {
   const setType = getMetadata('domain');
   let type = 'gov';
-  if (setType) {
-    type = setType;
+  if (setType === 'mil') {
+    type = 'mil';
+  } else {
+    type = 'gov';
   }
   let bannerText;
   let buttonText;
