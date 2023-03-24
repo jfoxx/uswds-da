@@ -3,7 +3,8 @@ export default function decorate(block) {
   const items = block.querySelectorAll(':scope > div');
   let itemNumber = 1;
   const collection = document.createElement('div');
-  const uniqueId = Date.now();
+  const randNum = Math.random().toString();
+  const uniqueId = randNum.substring(2);
   items.forEach((i) => {
     const pieces = i.querySelectorAll('div');
     const heading = document.createElement('h4');
