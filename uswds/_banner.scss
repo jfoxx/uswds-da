@@ -1,3 +1,9 @@
 @forward "uswds-theme";
 
 @forward "usa-banner";
+
+//This rule doesn't have enough specificity to work out of order from a full system compile.
+.usa-banner__button[aria-expanded=false], .usa-banner__button[aria-expanded=true] {
+    background-image: none !important;
+}
+

@@ -48,3 +48,25 @@ body>header { min-height: 220px;
       flex-wrap: nowrap;
    }
    }
+
+   .usa-logo__text {
+      display: flex !important;
+      
+      a {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+      }
+      a.usa-logo__text--img {
+  
+        @include at-media-max($theme-header-min-width) {
+          display: none;
+        }
+        flex: none;
+        picture {
+          max-width: 120px;
+          display: block;
+          margin-right: 20px;
+        }
+      }
+    }
