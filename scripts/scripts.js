@@ -14,7 +14,7 @@ import {
   readBlockConfig,
   toClassName,
   toCamelCase,
-} from './lib-franklin.js';
+} from './aem.js';
 
 /**
  * Grab the current URL and search for a given keyword
