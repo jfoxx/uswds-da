@@ -1,6 +1,6 @@
 import {
   getMetadata,
-} from '../../scripts/lib-franklin.js';
+} from '../../scripts/aem.js';
 
 export default function decorate(block) {
   const setType = getMetadata('domain');
