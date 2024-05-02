@@ -1,7 +1,7 @@
 import {
   getMetadata,
   toClassName,
-} from '../../scripts/lib-franklin.js';
+} from '../../scripts/aem.js';
 
 /**
  * decorates the header, mainly the nav

@@ -139,6 +139,37 @@ export function decorateButtons(element) {
   });
 }
 
+function uswdsInit() {
+  const loadingClass = 'usa-js-loading';
+  let fallback = '';
+
+  document.documentElement.classList.add(loadingClass);
+  function revertClass() {
+    document.documentElement.classList.remove(loadingClass);
+  }
+
+  fallback = setTimeout(revertClass, 8000);
+
+  function verifyLoaded() {
+    if (window.uswdsPresent) {
+      clearTimeout(fallback);
+      revertClass();
+      window.removeEventListener('load', verifyLoaded, true);
+    }
+  }
+
+  window.addEventListener('load', verifyLoaded, true);
+}
+
+function uswdsAppend(callback) {
+  const uswds = document.createElement('script');
+  const body = document.querySelector('body');
+  uswds.async = 'true';
+  uswds.src = '/scripts/uswds.min.js';
+  body.append(uswds);
+  callback();
+}
+
 const LCP_BLOCKS = ['banner', 'hero']; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = 'project-1'; // add your RUM generation information here
 
@@ -264,6 +295,7 @@ async function loadLazy(doc) {
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
   sampleRUM.observe(main.querySelectorAll('picture > img'));
+  uswdsAppend(uswdsInit);
 }
 
 /**
@@ -283,31 +315,3 @@ async function loadPage() {
 }
 
 loadPage();
-
-(function uswdsInit() {
-  const loadingClass = 'usa-js-loading';
-  let fallback = '';
-
-  document.documentElement.classList.add(loadingClass);
-  function revertClass() {
-    document.documentElement.classList.remove(loadingClass);
-  }
-
-  fallback = setTimeout(revertClass, 8000);
-
-  function verifyLoaded() {
-    if (window.uswdsPresent) {
-      clearTimeout(fallback);
-      revertClass();
-      window.removeEventListener('load', verifyLoaded, true);
-    }
-  }
-
-  window.addEventListener('load', verifyLoaded, true);
-}());
-
-const uswds = document.createElement('script');
-const body = document.querySelector('body');
-uswds.async = 'true';
-uswds.src = '/scripts/uswds.min.js';
-body.append(uswds);
