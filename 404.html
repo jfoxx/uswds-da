@@ -1,67 +1,79 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <title>Page not found</title>
-  <script type="text/javascript">
-    window.isErrorPage = true;
-    window.errorCode = '404';
-  </script>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta property="og:title" content="Page not found">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found</title>
   <script src="/scripts/scripts.js" type="module" crossorigin="use-credentials"></script>
-  <script type="module">
-    import { sampleRUM } from '/scripts/lib-franklin.js';
-
-    window.addEventListener('load', () => {
-      if (document.referrer) {
-        const { origin, pathname } = new URL(document.referrer);
-        if (origin === window.location.origin) {
-          const backBtn = document.createElement('a');
-          backBtn.classList.add('button', 'error-button-back');
-          backBtn.href = pathname;
-          backBtn.textContent = 'Go back';
-          backBtn.title = 'Go back';
-          const btnContainer = document.querySelector('.button-container');
-          btnContainer.append(backBtn);
-        }
-      }
-      sampleRUM('404', { source: document.referrer, target: window.location.href });
-    });
-  </script>
-  <link rel="stylesheet" href="/styles/styles.css">
-  <style>
-    main.error {
-      min-height: calc(100vh - var(--nav-height));
-      display: flex;
-      align-items: center;
-    }
-
-    main.error .error-number {
-      width: 100%;
-    }
-
-    main.error .error-number text {
-      font-family: var(--fixed-font-family);
-    }
-  </style>
-  <link rel="stylesheet" href="/styles/lazy-styles.css">
+  <link rel="stylesheet" href="/styles/uswds/styles.css"/>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 </head>
-
 <body>
   <header></header>
-  <main class="error">
-    <div class="section">
-      <svg viewBox="1 0 38 18" class="error-number">
-        <text x="0" y="17">404</text>
-      </svg>
-      <h2 class="error-message">Page Not Found</h2>
-      <p class="button-container">
-        <a href="/" class="button secondary error-button-home">Go home</a>
-      </p>
-    </div>
+  <main>
+   
+  <div id="root">
+
+  
+  <a class="usa-skipnav " href="#main-content">
+    Skip to main content
+  </a>
+     
+        <div class="usa-section">
+        <div class="grid-container">
+          <div class="grid-row grid-gap">
+            <main class="" id="main-content">
+              <div class="usa-prose">
+                <!-- This template can be used for most types of error pages -->
+                <!-- Remove these comments when you build your error pages -->
+  
+                <!-- Describe the error in the main heading -->
+                <h1>Page not found</h1>
+  
+                <!-- Explain what caused the error in the lead text -->
+                <p class="usa-intro">We’re sorry, we can’t find the page you're looking for. The site administrator may have removed it, changed its location, or made it otherwise unavailable.</p>
+  
+                <!-- Provide instructions how the user can address or fix the error -->
+                <p>If you typed the URL directly, check your spelling and capitalization. Our URLs look like this: <strong>&lt;agency.gov/example-one&gt;</strong>.</p><p>Visit our homepage for helpful tools and resources, or contact us and we’ll point you in the right direction.</p>
+  
+                <!-- Use buttons for main actions user can take, such as visiting the homepage or a contact page -->
+                <div class="margin-y-5">
+                  <ul class="usa-button-group">
+                    <li class="usa-button-group__item">
+                      <a href="javascript:void();" class="usa-button">
+                        Visit homepage
+                      </a>
+                    </li>
+                    <li class="usa-button-group__item">
+                      <button class="usa-button usa-button--outline" type="button">
+                        Contact Us
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+  
+                <!-- List additional support channels -->
+                <p>For immediate assistance:</p>
+                <ul>
+                                    <li>
+                      <a href="javascript:void();" class="usa-link">Start a live chat with us</a>
+                    </li>
+                                    <li>
+                      Call <a href="javascript:void();" class="usa-link">(555) 555-GOVT</a>
+                    </li>
+                                </ul>
+  
+                <!-- Error code if appropriate -->
+                <p class="text-base"><strong>Error code:</strong> 404</p>
+              </div>
+            </main>
+          </div>
+        </div>
+      </div>
   </main>
   <footer></footer>
 </body>
-
 </html>
