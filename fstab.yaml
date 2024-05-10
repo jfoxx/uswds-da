@@ -1,4 +1,4 @@
 mountpoints:
  /:
-    url: https://content.da.live/da-sites/uswds-da/
+    url: https://content.da.live/da-sites/jfoxx/uswds-da/
     type: markup
