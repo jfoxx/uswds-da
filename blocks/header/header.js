@@ -69,7 +69,10 @@ export default async function decorate(block) {
     const primaryItems = navUl.querySelectorAll(':scope > li');
     primaryItems.forEach((i) => {
       i.className = 'usa-nav__primary-item';
-      i.querySelector('a').className = 'usa-nav-link';
+      const link = i.querySelector('a');
+      if (link) {
+        link.className = 'usa-nav-link';
+      }
       if (i.querySelector('ul')) {
         const btn = document.createElement('button');
         btn.setAttribute('type', 'buton');
