@@ -33,15 +33,13 @@ export default async function decorate(block) {
     logo.id = 'extended-logo';
     const logoContents = block.children[0].innerHTML;
     logo.innerHTML = logoContents;
-    const logodiv = logo.querySelector('.logo > div');
-    const siteNameDiv = logodiv.children[1];
-    const siteName = siteNameDiv.innerText.replace(/(\r\n|\n|\r)/gm, '').trim();
+    const siteName = logo.innerText.replace(/(\r\n|\n|\r)/gm, '').trim();
+    const siteLink = logo.querySelector('a');
     const picture = logo.querySelector('picture');
     const img = picture.querySelector('img');
     img.setAttribute('aria-label', `Logo for ${siteName}`);
     const logoEm = document.createElement('em');
     logoEm.className = 'usa-logo__text';
-    const siteLink = siteNameDiv.querySelector('a');
     siteLink.setAttribute('title', siteName);
     const siteUrl = siteLink.href;
     logoEm.append(siteLink);
