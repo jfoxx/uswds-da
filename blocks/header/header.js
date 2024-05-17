@@ -27,7 +27,7 @@ export default async function decorate(block) {
       if (section) section.classList.add(c);
     });
 
-    //make the logo
+    // make the logo
     const logo = document.createElement('div');
     logo.className = 'usa-logo';
     logo.id = 'extended-logo';
