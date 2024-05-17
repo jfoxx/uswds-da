@@ -115,12 +115,12 @@ export default async function decorate(block) {
 
     const secondary = document.createElement('div');
     secondary.className = 'usa-nav__secondary';
-    const secondaryClone = inner.children[2].querySelector('ul').innerHTML;
-    const secondaryUl = document.createElement('ul');
+    const secondaryClone = block.children[1];
+    block.children[1].remove();
+    secondary.innerHTML = secondaryClone.innerHTML;
+    const secondaryUl = secondary.querySelector('ul');
     secondaryUl.classList.add('usa-nav__secondary-links');
-    secondaryUl.innerHTML = secondaryClone;
     secondaryUl.querySelectorAll('li').forEach((i) => { i.className = 'usa-nav__secondary-item'; });
-    inner.children[2].remove();
     secondary.append(secondaryUl);
 
     // Search form
